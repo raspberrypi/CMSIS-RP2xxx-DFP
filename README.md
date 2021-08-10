@@ -1,2 +1,2 @@
 # RP2040_DFP
-Device support for the RP2040.
+CMSIS-Pack with device support for the Raspberry Pi Foundation's RP2040.
