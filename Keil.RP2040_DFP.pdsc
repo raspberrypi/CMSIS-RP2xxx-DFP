@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>RP2040_DFP</name>
+  <description>Raspberry Pi RP2040 Device Family Pack</description>
+  <vendor>Keil</vendor>
+  <!-- <license>license.txt</license> -->
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.0-dev0">
+      Initial Release.
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>Raspberry Pi</keyword>
+    <keyword>RP2040</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="Raspberry Pi Devices" Dvendor="RPi:170">
+
+      <subFamily DsubFamily="RP2040 Series">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian"/>
+        <book name="Documentation/rp2040-datasheet.pdf" title="RP2040 Data Sheet"/>
+
+        <description>
+          Designed by Raspberry Pi, RP2040 features a dual-core Arm Cortex-M0+ processor with 264KB internal RAM and support for up to 16MB of off-chip Flash.
+          A wide range of flexible I/O options includes I2C, SPI, and — uniquely — Programmable I/O (PIO).
+          These support endless possible applications for this small and affordable package.
+        </description>
+
+        <debug svd="CMSIS/SVD/rp2040.svd"/>
+        <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
+
+        <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
+          // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+        </debugvars>
+
+        <sequences>
+        </sequences>
+
+        <device Dname="RP2040">
+          <memory name="Main_Flash" access="rx"           start="0x00000000" size="0x00008000" default="1" startup="1"/>
+          <memory name="SRAM"       access="rwx"          start="0x20000000" size="0x00042000" default="1" init="0"/>
+
+          <!--algorithm name="CMSIS/Flash/RP2040.FLM"  start="0x00000000" size="0x00008000" default="1"/-->
+
+          <!-- feature type="QFP" n="48"/-->
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="RP2040">
+      <description>Raspberry PI RP2040 device</description>
+      <require Dvendor="RPi:170" Dname="RP2040*"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="RP2040 CMSIS">
+      <description>Raspberry PI RP2040 device and CMSIS-CORE</description>
+      <require condition="RP2040"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+
+    <!-- CMSIS-Startup components -->
+    <!-- Cortex-M0+ -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="RP2040 CMSIS" isDefaultVariant="true">
+      <description>System Startup for Raspberry PI RP2040 device</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STARTUP_RP2040    /* Device Startup for RP2040 */
+      </RTE_Components_h>
+
+      <files>
+        <!-- include folder / device header file -->
+        <file category="header"       name="CMSIS/Device/RP2040/Include/rp2040.h"/>
+
+        <!-- startup / linker file -->
+        <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/startup_rp2040.c"     version="1.0.0" attr="config"/>
+        <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.0.0" attr="config"/>
+        <file category="linkerScript" condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config"/>
+
+        <!-- system file -->
+        <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.0.0" attr="config"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="RP2040 CMSIS">
+      <description>DEPRECATED: System and Startup for Raspberry PI RP2040 device</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="header"  name="CMSIS/Device/RP2040/Include/rp2040.h"/>
+
+        <!-- startup / linker file -->
+        <file category="sourceAsm"    condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/startup_rp2040.S" version="1.0.0" attr="config"/>
+        <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.0.0" attr="config"/>
+        <file category="sourceAsm"    condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/startup_rp2040.S" version="1.0.0" attr="config"/>
+        <file category="linkerScript" condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config"/>
+
+        <!-- system file -->
+        <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>
