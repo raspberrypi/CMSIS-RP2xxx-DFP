@@ -38,8 +38,8 @@
           // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
         </debugvars>
 
-        <sequences>
-        </sequences>
+        <!--<sequences>
+        </sequences>-->
 
         <device Dname="RP2040">
           <memory name="Main_Flash" access="rx"           start="0x00000000" size="0x00008000" default="1" startup="1"/>
@@ -119,5 +119,35 @@
     </component>
 
   </components>
+
+<boards>
+  <board vendor="Raspberry Pi" name="Raspberry Pi Pico" revision="Rev. 3" salesContact="https://www.raspberrypi.org/contact/"
+           orderForm   ="https://www.raspberrypi.org/products/raspberry-pi-pico/">
+    <description>The new flexible $4 microcontroller board from Raspberry Pi</description>
+    <image small="Images/RPi_Pico.png" large="Images/RPi_Pico.png" public="true"/>
+
+    <book category="overview"  name="https://www.raspberrypi.org/products/raspberry-pi-pico/" title="Raspberry Pi Pico"/>
+    <book category="other"     name="Documentation/Pico-R3-Fritzing.fzpz" title="Fritzing Part" public="true"/>
+    <book category="other"     name="Documentation/Pico-R3-step.zip" title="STEP File" public="true"/>
+    <book category="setup"     name="Documentation/getting-started-with-pico.pdf" title="Getting Started Guide" public="true"/>
+    <book category="manual"    name="Documentation/pico-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
+    <book category="schematic" name="Documentation/RPi-Pico-R3-PUBLIC-20200119.zip" title="Schematics" public="true"/>
+    <book category="other"     name="Documentation/README.md" title="Guide"/>
+
+    <mountedDevice Dname="RP2040" Dvendor="RPi:170"/>
+
+    <feature type="USB" n="1" name="USB 1.1 with device and host support"/>
+    <feature type="DIO" n="26" name="26 × multi-function GPIO pins"/>
+    <feature type="TempSens" n="1"/>
+    <feature type="SPI" n="2" name=""/>
+    <feature type="I2C" n="2" name=""/>
+    <feature type="ConnOther" n="2" name="UART"/>
+    <feature type="ConnOther" n="3" name="12-bit ADC"/>
+    <feature type="ConnOther" n="16" name="PWM Channels"/>
+    <feature type="ConnOther" n="8" name="Programmable I/O (PIO) state machines for custom peripheral support"/>
+
+    <debugInterface adapter="JTAG/SW" connector="3-pin SWD I/F"/>
+  </board>
+</boards>
 
 </package>
