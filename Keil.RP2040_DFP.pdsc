@@ -22,7 +22,8 @@
     <family Dfamily="Raspberry Pi Devices" Dvendor="RPi:170">
 
       <subFamily DsubFamily="RP2040 Series">
-        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian"/>
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core0"/>
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core1"/>
         <book name="Documentation/rp2040-datasheet.pdf" title="RP2040 Data Sheet"/>
 
         <description>
@@ -32,14 +33,137 @@
         </description>
 
         <debug svd="CMSIS/SVD/rp2040.svd"/>
+
         <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
 
         <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
           // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
         </debugvars>
 
-        <!--<sequences>
-        </sequences>-->
+        <sequences>
+          <!-- Helper sequences during sequence development, to be removed -->
+          <sequence name="ReadPrintDPIDR">
+            <block>
+              __var value = 0;
+              // Read DPIDR
+              value = ReadDP(0x0);
+              Message(0, "DPIDR: 0x%08X", value);
+            </block>
+          </sequence>
+          <sequence name="ReadPrintRegistersDP">
+            <block>
+              __var value = 0;
+              // Select DP Bank for TARGETID Access
+              WriteDP(0x8, 0x2);
+              value = ReadDP(0x4);
+              Message(0, "TARGETID: 0x%08X", value);
+              // Select DP Bank for DLPIDR Access (Instance ID + ProtVSN)
+              WriteDP(0x8, 0x3);
+              value = ReadDP(0x4);
+              Message(0, "DLPIDR: 0x%08X", value);
+            </block>
+          </sequence>
+          <sequence name="LineReset">
+            <block>
+              // Ensure current debug interface is in reset state
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+            </block>
+          </sequence>
+          <!-- Helper sequences -->
+          <sequence name="Dormant2SWD">
+            <block>
+              // Ensure current debug interface is in reset state
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // At least 8 cycles SWDIO/TMS HIGH
+              DAP_SWJ_Sequence(8, 0xFF);
+
+              // Alert Sequence Bits  0.. 63
+              DAP_SWJ_Sequence(64, 0x86852D956209F392);
+
+              // Alert Sequence Bits 64..127
+              DAP_SWJ_Sequence(64, 0x19BC0EA2E3DDAFE9);
+
+              // 4 cycles SWDIO/TMS LOW + 8-Bit SWD Activation Code (0x1A)
+              DAP_SWJ_Sequence(12, 0x1A0);
+            </block>
+          </sequence>
+          <sequence name="SelectCore" Pname="Core0">
+            <block>
+              // Enter SWD Line Reset State
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // DP TARGETSEL Write Request
+              DAP_SWJ_Sequence(8, 0x99);
+
+              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              DAP_SWJ_Sequence(5, 0x1F);
+
+              // Write TARGETSEL Value - Core 0
+              DAP_SWJ_Sequence(32, 0x01002927);
+
+              // Parity + 2 idle cycles
+              DAP_SWJ_Sequence(3, 0x0);
+            </block>
+          </sequence>
+          <sequence name="SelectCore" Pname="Core1">
+            <block>
+              // Enter SWD Line Reset State
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // DP TARGETSEL Write Request
+              DAP_SWJ_Sequence(8, 0x99);
+
+              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              DAP_SWJ_Sequence(5, 0x1F);
+
+              // Write TARGETSEL Value - Core 1
+              DAP_SWJ_Sequence(32, 0x11002927);
+
+              // Parity + 2 idle cycles
+              DAP_SWJ_Sequence(3, 0x1);
+            </block>
+          </sequence>
+          <sequence name="SelectRescueDP">
+            <block>
+              // Enter SWD Line Reset State
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // DP TARGETSEL Write Request
+              DAP_SWJ_Sequence(8, 0x99);
+
+              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              DAP_SWJ_Sequence(5, 0x1F);
+
+              // Write TARGETSEL Value - RescueDP
+              DAP_SWJ_Sequence(32, 0xF1002927);
+
+              // Parity + 2 idle cycles
+              DAP_SWJ_Sequence(3, 0x0);
+            </block>
+          </sequence>
+
+          <sequence name="DebugPortSetup">
+            <block>
+              Sequence("Dormant2SWD");
+              Sequence("SelectCore");
+              // Read DPIDR to enable SWD interface
+              ReadDP(0x0);
+            </block>
+          </sequence>
+
+          <sequence name="DebugDeviceUnlock" info="Read and print DP registers for ID">
+            <block>
+              Sequence("ReadPrintDPIDR");
+              Sequence("ReadPrintRegistersDP");
+            </block>
+          </sequence>
+        </sequences>
 
         <device Dname="RP2040">
           <memory name="Main_Flash" access="rx"           start="0x00000000" size="0x00008000" default="1" startup="1"/>
