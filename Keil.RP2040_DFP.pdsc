@@ -41,39 +41,8 @@
         </debugvars>
 
         <sequences>
-          <!-- Helper sequences during sequence development, to be removed -->
-          <sequence name="ReadPrintDPIDR">
-            <block>
-              __var dpIdrAddr = 0x0;
-              __var value     = 0;
-              // Read DPIDR
-              value = ReadDP(dpIdrAddr);
-              Message(0, "DPIDR: 0x%08X", value);
-            </block>
-          </sequence>
-          <sequence name="ReadPrintRegistersDP">
-            <block>
-              __var dpIdrAddr = 0x0;
-              __var value = 0;
-              // Select DP Bank for TARGETID Access
-              WriteDP(0x8, 0x2);
-              value = ReadDP(0x4);
-              Message(0, "TARGETID: 0x%08X", value);
-              // Select DP Bank for DLPIDR Access (Instance ID + ProtVSN)
-              WriteDP(0x8, 0x3);
-              value = ReadDP(0x4);
-              Message(0, "DLPIDR: 0x%08X", value);
-            </block>
-          </sequence>
-          <sequence name="LineReset">
-            <block>
-              // Ensure current debug interface is in reset state
-              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
-              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
-            </block>
-          </sequence>
           <!-- Helper sequences -->
-          <sequence name="Dormant2SWD">
+          <sequence name="Dormant2SWD" info="Switch from dormant mode to SWD mode">
             <block>
               // Ensure current debug interface is in reset state
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
@@ -92,7 +61,8 @@
               DAP_SWJ_Sequence(12, 0x1A0);
             </block>
           </sequence>
-          <sequence name="CheckForPicoDAP" info="Ensure we do not apply TARGETSEL sequence to DAP w/o multi-drop">
+
+          <sequence name="CheckForPicoDAP" info="Ensure TARGETSEL sequence not applied to DAP w/o multi-drop">
             <block>
               __var swDP      = 0x0BC12477;  // Cortex-M0+ SW-DP with multi-drop (Core0 and Core1 sub-systems)
               __var rescueDP  = 0x10212927;  // Raspberry Pi Pico Rescue DP
@@ -105,7 +75,6 @@
 
               // Read DPIDR
               value = ReadDP(dpIdrAddr);
-              Message(0, "DPIDR: 0x%08X", value);
             </block>
             <control if="value != swDP &amp;&amp; value != rescueDP">
               <block>
@@ -113,7 +82,7 @@
               </block>
             </control>
           </sequence>
-          <sequence name="SelectCore" Pname="Core0">
+          <sequence name="SelectCore" Pname="Core0" info="TARGETSEL sequence for Core 0">
             <block>
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
@@ -132,7 +101,7 @@
               DAP_SWJ_Sequence(3, 0x0);
             </block>
           </sequence>
-          <sequence name="SelectCore" Pname="Core1">
+          <sequence name="SelectCore" Pname="Core1" info="TARGETSEL sequence for Core 1">
             <block>
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
@@ -151,41 +120,13 @@
               DAP_SWJ_Sequence(3, 0x1);
             </block>
           </sequence>
-          <sequence name="SelectRescueDP">
-            <block>
-              // Enter SWD Line Reset State
-              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
-              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
-
-              // DP TARGETSEL Write Request
-              DAP_SWJ_Sequence(8, 0x99);
-
-              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
-              DAP_SWJ_Sequence(5, 0x1F);
-
-              // Write TARGETSEL Value - RescueDP
-              DAP_SWJ_Sequence(32, 0xF1002927);
-
-              // Parity + 2 idle cycles
-              DAP_SWJ_Sequence(3, 0x0);
-            </block>
-          </sequence>
 
           <sequence name="DebugPortSetup">
             <block>
-              __var dpIdrAddr = 0x0;
               Sequence("Dormant2SWD");
               Sequence("CheckForPicoDAP");
               Sequence("SelectCore");
-              // Read DPIDR to enable SWD interface
-              ReadDP(dpIdrAddr);
-            </block>
-          </sequence>
-
-          <sequence name="DebugDeviceUnlock" info="Read and print DP registers for ID">
-            <block>
-              Sequence("ReadPrintDPIDR");
-              Sequence("ReadPrintRegistersDP");
+              ReadDP(0x0);                               // Read DPIDR to enable SWD interface
             </block>
           </sequence>
         </sequences>
