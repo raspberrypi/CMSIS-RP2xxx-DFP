@@ -8,6 +8,9 @@
   <url>http://www.keil.com/pack/</url>
 
   <releases>
+    <release version="1.0.0-dev1">
+      Initial debug description for first debug connections
+    </release>
     <release version="1.0.0-dev0">
       Initial Release.
     </release>
@@ -92,6 +95,10 @@
               DAP_SWJ_Sequence(8, 0x99);
 
               // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              // CAUTION: This needs to be double-checked with Raspberry Pi. In theory,
+              //          this should not harm target GPIO ports. But if the target
+              //          drives SWDIO during the normally expected back-off phasem,
+              //          this could become problematic!
               DAP_SWJ_Sequence(5, 0x1F);
 
               // Write TARGETSEL Value - Core 0
@@ -111,6 +118,10 @@
               DAP_SWJ_Sequence(8, 0x99);
 
               // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              // CAUTION: This needs to be double-checked with Raspberry Pi. In theory,
+              //          this should not harm target GPIO ports. But if the target
+              //          drives SWDIO during the normally expected back-off phasem,
+              //          this could become problematic!
               DAP_SWJ_Sequence(5, 0x1F);
 
               // Write TARGETSEL Value - Core 1
