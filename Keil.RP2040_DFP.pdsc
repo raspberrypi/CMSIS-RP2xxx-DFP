@@ -8,6 +8,9 @@
   <url>http://www.keil.com/pack/</url>
 
   <releases>
+    <release version="1.0.0-dev1">
+      Initial debug description for first debug connections
+    </release>
     <release version="1.0.0-dev0">
       Initial Release.
     </release>
@@ -22,7 +25,8 @@
     <family Dfamily="Raspberry Pi Devices" Dvendor="RPi:170">
 
       <subFamily DsubFamily="RP2040 Series">
-        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian"/>
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core0"/>
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core1"/>
         <book name="Documentation/rp2040-datasheet.pdf" title="RP2040 Data Sheet"/>
 
         <description>
@@ -32,14 +36,111 @@
         </description>
 
         <debug svd="CMSIS/SVD/rp2040.svd"/>
+
         <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
 
         <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
           // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
         </debugvars>
 
-        <!--<sequences>
-        </sequences>-->
+        <sequences>
+          <!-- Helper sequences -->
+          <sequence name="Dormant2SWD" info="Switch from dormant mode to SWD mode">
+            <block>
+              // Ensure current debug interface is in reset state
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // At least 8 cycles SWDIO/TMS HIGH
+              DAP_SWJ_Sequence(8, 0xFF);
+
+              // Alert Sequence Bits  0.. 63
+              DAP_SWJ_Sequence(64, 0x86852D956209F392);
+
+              // Alert Sequence Bits 64..127
+              DAP_SWJ_Sequence(64, 0x19BC0EA2E3DDAFE9);
+
+              // 4 cycles SWDIO/TMS LOW + 8-Bit SWD Activation Code (0x1A)
+              DAP_SWJ_Sequence(12, 0x1A0);
+            </block>
+          </sequence>
+
+          <sequence name="CheckForPicoDAP" info="Ensure TARGETSEL sequence not applied to DAP w/o multi-drop">
+            <block>
+              __var swDP      = 0x0BC12477;  // Cortex-M0+ SW-DP with multi-drop (Core0 and Core1 sub-systems)
+              __var rescueDP  = 0x10212927;  // Raspberry Pi Pico Rescue DP
+              __var dpIdrAddr = 0x0;
+              __var value     = 0x0;
+
+              // Ensure current debug interface is in reset state
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // Read DPIDR
+              value = ReadDP(dpIdrAddr);
+            </block>
+            <control if="value != swDP &amp;&amp; value != rescueDP">
+              <block>
+                Message(2, "Unexpected DAP ID (0x%08X), make sure a Raspberry Pi Pico is connected!", value);
+              </block>
+            </control>
+          </sequence>
+          <sequence name="SelectCore" Pname="Core0" info="TARGETSEL sequence for Core 0">
+            <block>
+              // Enter SWD Line Reset State
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // DP TARGETSEL Write Request
+              DAP_SWJ_Sequence(8, 0x99);
+
+              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              // CAUTION: This needs to be double-checked with Raspberry Pi. In theory,
+              //          this should not harm target GPIO ports. But if the target
+              //          drives SWDIO during the normally expected back-off phasem,
+              //          this could become problematic!
+              DAP_SWJ_Sequence(5, 0x1F);
+
+              // Write TARGETSEL Value - Core 0
+              DAP_SWJ_Sequence(32, 0x01002927);
+
+              // Parity + 2 idle cycles
+              DAP_SWJ_Sequence(3, 0x0);
+            </block>
+          </sequence>
+          <sequence name="SelectCore" Pname="Core1" info="TARGETSEL sequence for Core 1">
+            <block>
+              // Enter SWD Line Reset State
+              DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
+              DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
+
+              // DP TARGETSEL Write Request
+              DAP_SWJ_Sequence(8, 0x99);
+
+              // 5 Cycles not driven (drive HIGH to match DAP internal pull-up level)
+              // CAUTION: This needs to be double-checked with Raspberry Pi. In theory,
+              //          this should not harm target GPIO ports. But if the target
+              //          drives SWDIO during the normally expected back-off phasem,
+              //          this could become problematic!
+              DAP_SWJ_Sequence(5, 0x1F);
+
+              // Write TARGETSEL Value - Core 1
+              DAP_SWJ_Sequence(32, 0x11002927);
+
+              // Parity + 2 idle cycles
+              DAP_SWJ_Sequence(3, 0x1);
+            </block>
+          </sequence>
+
+          <sequence name="DebugPortSetup">
+            <block>
+              Sequence("Dormant2SWD");
+              Sequence("CheckForPicoDAP");
+              Sequence("SelectCore");
+              ReadDP(0x0);                               // Read DPIDR to enable SWD interface
+            </block>
+          </sequence>
+        </sequences>
 
         <device Dname="RP2040">
           <memory name="Main_Flash" access="rx"           start="0x00000000" size="0x00008000" default="1" startup="1"/>
