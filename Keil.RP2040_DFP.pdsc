@@ -8,6 +8,10 @@
   <url>http://www.keil.com/pack/</url>
 
   <releases>
+    <release version="1.0.0-dev2">
+      Prepared atomic sequences to enable debug units w/ contious clocking.
+      Yet, kept atomic blocks to false due to problems with Picoprobe.
+    </release>
     <release version="1.0.0-dev1">
       Initial debug description for first debug connections
     </release>
@@ -36,7 +40,6 @@
         </description>
 
         <debug svd="CMSIS/SVD/rp2040.svd"/>
-
         <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
 
         <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
@@ -46,7 +49,7 @@
         <sequences>
           <!-- Helper sequences -->
           <sequence name="Dormant2SWD" info="Switch from dormant mode to SWD mode">
-            <block>
+            <block atomic="false">
               // Ensure current debug interface is in reset state
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
@@ -66,7 +69,7 @@
           </sequence>
 
           <sequence name="CheckForPicoDAP" info="Ensure TARGETSEL sequence not applied to DAP w/o multi-drop">
-            <block>
+            <block atomic="false">
               __var swDP      = 0x0BC12477;  // Cortex-M0+ SW-DP with multi-drop (Core0 and Core1 sub-systems)
               __var rescueDP  = 0x10212927;  // Raspberry Pi Pico Rescue DP
               __var dpIdrAddr = 0x0;
@@ -76,8 +79,9 @@
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
 
-              // Read DPIDR
-              value = ReadDP(dpIdrAddr);
+              value = ReadDP(dpIdrAddr);                 // Read DPIDR
+                                                         // Read inside atomic block in case debug
+                                                         // unit continously clocks.
             </block>
             <control if="value != swDP &amp;&amp; value != rescueDP">
               <block>
@@ -85,8 +89,9 @@
               </block>
             </control>
           </sequence>
+
           <sequence name="SelectCore" Pname="Core0" info="TARGETSEL sequence for Core 0">
-            <block>
+            <block atomic="false">
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
@@ -106,10 +111,15 @@
 
               // Parity + 2 idle cycles
               DAP_SWJ_Sequence(3, 0x0);
+
+              ReadDP(0x0);                               // Read DPIDR to enable SWD interface
+                                                         // Read inside atomic block in case debug
+                                                         // unit continously clocks.
             </block>
           </sequence>
+
           <sequence name="SelectCore" Pname="Core1" info="TARGETSEL sequence for Core 1">
-            <block>
+            <block atomic="false">
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
@@ -129,6 +139,10 @@
 
               // Parity + 2 idle cycles
               DAP_SWJ_Sequence(3, 0x1);
+
+              ReadDP(0x0);                               // Read DPIDR to enable SWD interface
+                                                         // Read inside atomic block in case debug
+                                                         // unit continously clocks.
             </block>
           </sequence>
 
@@ -137,7 +151,6 @@
               Sequence("Dormant2SWD");
               Sequence("CheckForPicoDAP");
               Sequence("SelectCore");
-              ReadDP(0x0);                               // Read DPIDR to enable SWD interface
             </block>
           </sequence>
         </sequences>
