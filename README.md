@@ -18,11 +18,11 @@ The following scenarios have been tested so far with above workaround for the CM
 
 ### Keil Studio VS Code Extensions
 
-| Debug Unit | w/o Atomic Blocks | w/ Atomic Blocks | Notes |
+| Debug Unit | w/o Atomic Blocks | w/ Atomic Blocks | Notes|
 |------------|-------------------|------------------|------|
-| Picoprobe (CMSIS-DAPv2 based) | :white_check_mark: | :x: | Known issues with FW for back-to-back command buffers |
-| ULINKplus (CMSIS-DAPv2 based) | :white_check_mark: | :white_check_mark: |  |
-| ULINKpro | :x: | :white_check_mark: | ULINKpro requires atomic blocks due to continuous SWCLK clocking between SWJ_Sequence calls. This breaks the expected SWDIO bit stream. |
+| Picoprobe (CMSIS-DAPv2 based) | :white_check_mark: | :white_check_mark: | :warning: No atomic support in KSC/VS Code extension with KSC engine => all commands executed non-atomically => works for non-continuously clocking probes |
+| ULINKplus (CMSIS-DAPv2 based) | :white_check_mark: | :white_check_mark: | :warning: No atomic support in KSC/VS Code extension with KSC engine => all commands executed non-atomically => works for non-continuously clocking probes |
+| ULINKpro | N/A | N/A | ULINKpro not supported with KSC |
 
 ### Known Issues with Picoprobe
 
