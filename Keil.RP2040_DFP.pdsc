@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
   <name>RP2040_DFP</name>
   <description>Raspberry Pi RP2040 Device Family Pack</description>
   <vendor>Keil</vendor>
   <!-- <license>license.txt</license> -->
-  <url>http://www.keil.com/pack/</url>
+  <url>https://www.keil.com/pack/</url>
 
   <releases>
     <release version="1.0.0-dev2">
