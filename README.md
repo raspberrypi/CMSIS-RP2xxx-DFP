@@ -36,5 +36,5 @@ To enable ULINKpro with the prototype debug description, occurrences of "atomic=
 
 ## Open items
 
-- Add [flash programming files (FLM)](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/flashAlgorithm.html) for the external flash of Pico.
+- Add [flash programming files (FLM)](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/flashAlgorithm.html) for the external flash of Pico. [This repo](https://github.com/Aladdin-Wang/RP2040_Flash_Algorithm) contains an FLM file for the Pico already.
 - Fix issues with Picoprobe
