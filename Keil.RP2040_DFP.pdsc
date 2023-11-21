@@ -9,7 +9,8 @@
 
   <releases>
     <release version="1.0.0-dev4">
-      Add Flash programming algorithm
+      - Add Flash programming algorithm
+      - Add a scatter script to meet the minimal requirements of stage two boot and pick-sdk
     </release>
     <release version="1.0.0-dev2">
       Prepared atomic sequences to enable debug units w/ contious clocking.
