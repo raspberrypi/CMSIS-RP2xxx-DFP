@@ -174,7 +174,8 @@
   <conditions>
     <!-- Compiler Conditions -->
     <condition id="ARMCC">
-      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+        <accept Tcompiler="ARMCC" Toptions="AC6"/>
+        <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
     </condition>
     <condition id="GCC">
       <require Tcompiler="GCC"/>
