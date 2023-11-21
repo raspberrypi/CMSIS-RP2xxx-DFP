@@ -163,7 +163,7 @@
           <memory name="External_Flash" access="rx"           start="0x10000000" size="0x00200000" default="1" startup="1"/>
           <memory name="SRAM"           access="rwx"          start="0x20000000" size="0x00042000" default="1" init="0"/>
 
-          <algorithm name="CMSIS/Flash/Raspberry_Pi_Pico.FLM"  start="0x10000000" size="0x00200000" RAMstart="0x20000000" RAMsize="0x00002000" default="1"/>
+          <algorithm name="CMSIS/Flash/Raspberry_Pi_Pico.FLM"  start="0x10000000" size="0x00200000" RAMstart="0x20040000" RAMsize="0x00002000" default="1"/>
 
           <!-- feature type="QFP" n="48"/-->
         </device>
@@ -212,12 +212,24 @@
         <file category="header"       name="CMSIS/Device/RP2040/Include/rp2040.h"/>
 
         <!-- startup / linker file -->
-        <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/startup_rp2040.c"     version="1.1.0" attr="config"/>
+        <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/startup_rp2040.c"     version="1.2.0" attr="config"/>
         <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.1.0" attr="config"/>
         <file category="linkerScript" condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config"/>
 
         <!-- system file -->
         <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.1.0" attr="config"/>
+        
+        <!-- Stage 2 Boot -->
+        <file category="sourceAsm"                      name="pico-sdk/src/rp2_common/boot_stage2/compile_time_choice.S"/>
+        
+        <file category="include" language="asm"         name="pico-sdk/src/rp2040/hardware_regs/include/"/>
+        <file category="include" language="asm"         name="pico-sdk/src/rp2_common/hardware_irq/include/"/>
+        <file category="include" language="asm"         name="pico-sdk/src/rp2_common/pico_platform/include/"/>
+        <file category="include" language="asm"         name="pico-sdk/src/common/pico_base/include/"/>
+        <file category="include" language="asm"         name="wrapper/pico_base/"/>
+        <file category="include" language="asm"         name="pico-sdk/src/rp2_common/boot_stage2/include/"/>
+        <file category="include" language="asm"         name="pico-sdk/src/rp2_common/boot_stage2/asminclude/"/>
+        
       </files>
     </component>
     <!--
