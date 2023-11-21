@@ -2,8 +2,8 @@
  * @file     startup_rp2040.c
  * @brief    CMSIS-Core(M) Device Startup File for
  *           Raspberry Pi RP2040
- * @version  V1.0.0
- * @date     10. August 2021
+ * @version  V1.1.0
+ * @date     21. Nov 2022
  ******************************************************************************/
 /*
  * Copyright (c) 2021 Arm Limited. All rights reserved.
@@ -48,32 +48,32 @@ void SVC_Handler            (void) __attribute__ ((weak, alias("Default_Handler"
 void PendSV_Handler         (void) __attribute__ ((weak, alias("Default_Handler")));
 void SysTick_Handler        (void) __attribute__ ((weak, alias("Default_Handler")));
 
-void TIMER_IRQ_0_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void TIMER_IRQ_1_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void TIMER_IRQ_2_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void TIMER_IRQ_3_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void PWM_IRQ_WRAP_IRQn      (void) __attribute__ ((weak, alias("Default_Handler")));
-void USBCTRL_IRQ_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void XIP_IRQ_IRQn           (void) __attribute__ ((weak, alias("Default_Handler")));
-void PIO0_IRQ_0_IRQn        (void) __attribute__ ((weak, alias("Default_Handler")));
-void PIO0_IRQ_1_IRQn        (void) __attribute__ ((weak, alias("Default_Handler")));
-void PIO1_IRQ_0_IRQn        (void) __attribute__ ((weak, alias("Default_Handler")));
-void PIO1_IRQ_1_IRQn        (void) __attribute__ ((weak, alias("Default_Handler")));
-void DMA_IRQ_0_IRQn         (void) __attribute__ ((weak, alias("Default_Handler")));
-void DMA_IRQ_1_IRQn         (void) __attribute__ ((weak, alias("Default_Handler")));
-void IO_IRQ_BANK0_IRQn      (void) __attribute__ ((weak, alias("Default_Handler")));
-void IO_IRQ_QSPI_IRQn       (void) __attribute__ ((weak, alias("Default_Handler")));
-void SIO_IRQ_PROC0_IRQn     (void) __attribute__ ((weak, alias("Default_Handler")));
-void SIO_IRQ_PROC1_IRQn     (void) __attribute__ ((weak, alias("Default_Handler")));
-void CLOCKS_IRQ_IRQn        (void) __attribute__ ((weak, alias("Default_Handler")));
-void SPI0_IRQ_IRQn          (void) __attribute__ ((weak, alias("Default_Handler")));
-void SPI1_IRQ_IRQn          (void) __attribute__ ((weak, alias("Default_Handler")));
-void UART0_IRQ_IRQn         (void) __attribute__ ((weak, alias("Default_Handler")));
-void UART1_IRQ_IRQn         (void) __attribute__ ((weak, alias("Default_Handler")));
-void ADC_IRQ_FIFO_IRQn      (void) __attribute__ ((weak, alias("Default_Handler")));
-void I2C0_IRQ_IRQn          (void) __attribute__ ((weak, alias("Default_Handler")));
-void I2C1_IRQ_IRQn          (void) __attribute__ ((weak, alias("Default_Handler")));
-void RTC_IRQ_IRQn           (void) __attribute__ ((weak, alias("Default_Handler")));
+void TIMER_IRQ_0_Handler    (void) __attribute__ ((weak, alias("Default_Handler"))); 
+void TIMER_IRQ_1_Handler    (void) __attribute__ ((weak, alias("Default_Handler"))); 
+void TIMER_IRQ_2_Handler    (void) __attribute__ ((weak, alias("Default_Handler"))); 
+void TIMER_IRQ_3_Handler    (void) __attribute__ ((weak, alias("Default_Handler"))); 
+void PWM_IRQ_WRAP_Handler   (void) __attribute__ ((weak, alias("Default_Handler"))); 
+void USBCTRL_IRQ_Handler    (void) __attribute__ ((weak, alias("Default_Handler")));
+void XIP_IRQ_Handler        (void) __attribute__ ((weak, alias("Default_Handler")));
+void PIO0_IRQ_0_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
+void PIO0_IRQ_1_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
+void PIO1_IRQ_0_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
+void PIO1_IRQ_1_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
+void DMA_IRQ_0_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
+void DMA_IRQ_1_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
+void IO_IRQ_BANK0_Handler   (void) __attribute__ ((weak, alias("Default_Handler")));
+void IO_IRQ_QSPI_Handler    (void) __attribute__ ((weak, alias("Default_Handler")));
+void SIO_IRQ_PROC0_Handler  (void) __attribute__ ((weak, alias("Default_Handler")));
+void SIO_IRQ_PROC1_Handler  (void) __attribute__ ((weak, alias("Default_Handler")));
+void CLOCKS_IRQ_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
+void SPI0_IRQ_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
+void SPI1_IRQ_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
+void UART0_IRQ_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
+void UART1_IRQ_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
+void ADC_IRQ_FIFO_Handler   (void) __attribute__ ((weak, alias("Default_Handler")));
+void I2C0_IRQ_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
+void I2C1_IRQ_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
+void RTC_IRQ_Handler        (void) __attribute__ ((weak, alias("Default_Handler")));
 
 
 /*----------------------------------------------------------------------------
@@ -142,8 +142,10 @@ extern const VECTOR_TABLE_Type __VECTOR_TABLE[48];
  *----------------------------------------------------------------------------*/
 __NO_RETURN void Reset_Handler(void)
 {
-  SystemInit();                             /* CMSIS System Initialization */
-  __PROGRAM_START();                        /* Enter PreMain (C library entry point) */
+    __set_MSP((uintptr_t)(&__INITIAL_SP));
+
+    SystemInit();                             /* CMSIS System Initialization */
+    __PROGRAM_START();                          /* Enter PreMain (C library entry point) */
 }
 
 
