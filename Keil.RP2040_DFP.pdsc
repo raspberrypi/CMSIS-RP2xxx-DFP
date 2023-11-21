@@ -8,6 +8,9 @@
   <url>https://www.keil.com/pack/</url>
 
   <releases>
+    <release version="1.0.0-dev3">
+      Add Flash programming algorithm
+    </release>
     <release version="1.0.0-dev2">
       Prepared atomic sequences to enable debug units w/ contious clocking.
       Yet, kept atomic blocks to false due to problems with Picoprobe.
@@ -159,7 +162,7 @@
           <memory name="Main_Flash" access="rx"           start="0x00000000" size="0x00008000" default="1" startup="1"/>
           <memory name="SRAM"       access="rwx"          start="0x20000000" size="0x00042000" default="1" init="0"/>
 
-          <!--algorithm name="CMSIS/Flash/RP2040.FLM"  start="0x00000000" size="0x00008000" default="1"/-->
+          <algorithm name="CMSIS/Flash/Raspberry_Pi_Pico.FLM"  start="0x10000000" size="0x00200000" default="1"/>
 
           <!-- feature type="QFP" n="48"/-->
         </device>
@@ -215,22 +218,23 @@
         <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.0.0" attr="config"/>
       </files>
     </component>
+    <!--
     <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="RP2040 CMSIS">
       <description>DEPRECATED: System and Startup for Raspberry PI RP2040 device</description>
       <files>
-        <!-- include folder / device header file -->
+        <!-- include folder / device header file --/>
         <file category="header"  name="CMSIS/Device/RP2040/Include/rp2040.h"/>
 
-        <!-- startup / linker file -->
+        <!-- startup / linker file --/>
         <file category="sourceAsm"    condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/startup_rp2040.S" version="1.0.0" attr="config"/>
         <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.0.0" attr="config"/>
         <file category="sourceAsm"    condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/startup_rp2040.S" version="1.0.0" attr="config"/>
         <file category="linkerScript" condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config"/>
 
-        <!-- system file -->
+        <!-- system file --/>
         <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.0.0" attr="config"/>
       </files>
-    </component>
+    </component-->
 
   </components>
 
