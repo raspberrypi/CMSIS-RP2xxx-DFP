@@ -276,7 +276,7 @@
             <file category="include"    name="pico-sdk/src/" />
             <file category="include"    name="pico-sdk/src/rp2040/hardware_structs/include/" />
             <file category="include"    name="pico-sdk/src/rp2040/hardware_regs/include/" />
-            <file category="include"    name="pico-sdk/src/boards/include/boards/" />
+            <file category="include"    name="pico-sdk/src/boards/include/" />
             <file category="include"    name="pico-sdk/src/common/pico_base/include/" />
             <file category="include"    name="pico-sdk/src/common/pico_sync/include/" />
             <file category="include"    name="pico-sdk/src/common/pico_time/include/" />
