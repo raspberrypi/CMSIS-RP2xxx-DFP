@@ -17,8 +17,6 @@
 *.pch
 
 # Libraries
-*.lib
-*.a
 *.la
 *.lo
 
@@ -52,3 +50,9 @@ Mkfile.old
 dkms.conf
 
 **.DS_STORE
+
+output
+
+RTE_Components.h
+*@*
+*.0???
