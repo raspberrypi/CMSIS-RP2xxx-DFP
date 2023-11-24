@@ -166,8 +166,6 @@ typedef unsigned int        uint;
 #define __preinit_array_end     Image$$ER_PREINIT_ARRAY$$ZI$$Limit
 
 #define PROGRAM_STATUS_REG
-#define LIB_CMSIS_CORE                  1
-#define PICO_CMSIS_RENAME_EXCEPTIONS    1
 #define PICO_ON_DEVICE                  1
 
 
