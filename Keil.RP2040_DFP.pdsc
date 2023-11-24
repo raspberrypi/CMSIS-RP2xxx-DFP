@@ -11,21 +11,6 @@
     <release version="9.9.9" tag="v9.9.9">
       Active development ...
     </release>
-    <release version="1.0.0-dev5">
-      - Add Flash programming algorithm
-      - Add a scatter script to meet the minimal requirements of stage two boot and pick-sdk
-      - Add Pico-SDK
-    </release>
-    <release version="1.0.0-dev2">
-      Prepared atomic sequences to enable debug units w/ contious clocking.
-      Yet, kept atomic blocks to false due to problems with Picoprobe.
-    </release>
-    <release version="1.0.0-dev1">
-      Initial debug description for first debug connections
-    </release>
-    <release version="1.0.0-dev0">
-      Initial Release.
-    </release>
   </releases>
 
   <keywords>
