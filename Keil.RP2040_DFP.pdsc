@@ -221,7 +221,7 @@
 
         <!-- startup / linker file -->
         <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/startup_rp2040.c"     version="1.2.0" attr="config"/>
-        <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.2.0" attr="config"/>
+        <file category="linkerScript" condition="ARMCC" name="CMSIS/Device/RP2040/Source/ARM/rp2040.sct"       version="1.2.1" attr="config"/>
         <file category="linkerScript" condition="GCC"   name="CMSIS/Device/RP2040/Source/GCC/gcc_arm.ld"       version="1.0.0" attr="config"/>
 
         <!-- system file -->
