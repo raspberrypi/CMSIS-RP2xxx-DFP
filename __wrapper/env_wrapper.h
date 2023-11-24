@@ -26,6 +26,11 @@
 /*============================ PROTOTYPES ====================================*/
 /*============================ IMPLEMENTATION ================================*/
 
+#if defined(__clang__)
+#   pragma clang diagnostic ignored "-Wunknown-warning-option"
+#   pragma clang diagnostic ignored "-Wmacro-redefined"
+#endif
+
 #ifndef __ENV_WRAPPER_H__
 #   define __ENV_WRAPPER_H__        1
 
