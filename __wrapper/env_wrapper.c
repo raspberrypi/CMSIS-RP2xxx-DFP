@@ -19,7 +19,9 @@
 #include "cmsis_compiler.h"
 #include "RTE_Components.h"
 #include <stdio.h>
+#if defined(__PERF_COUNTER__) && __PERF_COUNTER__
 #include "perf_counter.h"
+#endif
 
 #include "hardware/clocks.h"
 
