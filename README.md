@@ -1,8 +1,12 @@
-# RP2040 Device Family Pack
+# RP2040 Device Family Pack (v1.0.0-dev5)
 
-This is an exemplary CMSIS-Pack with device support for the Raspberry Pi Foundation's RP2040.
+This is an exemplary CMSIS-Pack with device support for the Raspberry Pi Foundation's RP2040. [Pico-SDK(v1.5.1)](https://github.com/raspberrypi/pico-sdk/releases/tag/1.5.1) has been integrated using submodule.
 
 The repository is using the [gen-pack library]() to check the PDSC file and create the pack. Make sure that all required [prerequisites](https://github.com/Open-CMSIS-Pack/gen-pack#prerequisites) are met.
+
+An [flash programming files (FLM)](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/flashAlgorithm.html) for the external flash of Pico has been added, which is donated by the author of [this repo](https://github.com/Aladdin-Wang/RP2040_Flash_Algorithm).
+
+
 
 ## Current pack status
 
@@ -36,5 +40,4 @@ To enable ULINKpro with the prototype debug description, occurrences of "atomic=
 
 ## Open items
 
-- Add [flash programming files (FLM)](https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/flashAlgorithm.html) for the external flash of Pico. [This repo](https://github.com/Aladdin-Wang/RP2040_Flash_Algorithm) contains an FLM file for the Pico already.
 - Fix issues with Picoprobe
