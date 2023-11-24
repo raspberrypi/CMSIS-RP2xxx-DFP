@@ -8,6 +8,9 @@
   <url>https://www.keil.com/pack/</url>
 
   <releases>
+    <release version="9.9.9" tag="v9.9.9">
+      Active development ...
+    </release>
     <release version="1.0.0-dev5">
       - Add Flash programming algorithm
       - Add a scatter script to meet the minimal requirements of stage two boot and pick-sdk
