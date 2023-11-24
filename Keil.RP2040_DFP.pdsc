@@ -212,7 +212,7 @@
     <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.1.0" condition="RP2040 CMSIS" isDefaultVariant="true">
       <description>System Startup for Raspberry PI RP2040 device</description>
       <RTE_Components_h>
-        #define RTE_DEVICE_STARTUP_RP2040    /* Device Startup for RP2040 */
+        #define RTE_Device_Startup_RP2040    /* Device Startup for RP2040 */
       </RTE_Components_h>
 
       <files>
@@ -388,10 +388,11 @@
             
         </files>
         <Pre_Include_Local_Component_h>
-#define LIB_CMSIS_CORE                  1
-#define PICO_CMSIS_RENAME_EXCEPTIONS    1
+            #define LIB_CMSIS_CORE                  1
+            #define PICO_CMSIS_RENAME_EXCEPTIONS    1
         </Pre_Include_Local_Component_h>
         <RTE_Components_h>
+            #define RTE_Device_Pico_SDK     /* Device Pico-SDK */
         </RTE_Components_h>
     </component>
 
