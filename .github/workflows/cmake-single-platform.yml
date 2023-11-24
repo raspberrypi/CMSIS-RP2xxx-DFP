@@ -22,7 +22,8 @@ jobs:
           git fetch --tags --force
 
       - name: get pico-sdk
-         run: git submodule update --init
+        run: |
+          git submodule update --init
 
       - uses: Open-CMSIS-Pack/gen-pack-action@main
         with:
