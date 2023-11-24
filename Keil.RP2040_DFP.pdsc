@@ -8,9 +8,10 @@
   <url>https://www.keil.com/pack/</url>
 
   <releases>
-    <release version="1.0.0-dev4">
+    <release version="1.0.0-dev5">
       - Add Flash programming algorithm
       - Add a scatter script to meet the minimal requirements of stage two boot and pick-sdk
+      - Add Pico-SDK
     </release>
     <release version="1.0.0-dev2">
       Prepared atomic sequences to enable debug units w/ contious clocking.
@@ -271,51 +272,120 @@
             <file category="sourceC"                name="__wrapper/stdio.c" />
             <file category="sourceC"                name="__wrapper/runtime.c" />
             
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_platform/platform.c" />
+            
+            
             <file category="include"    name="pico-sdk/src/" />
+            
+            <file category="sourceC"    name="pico-sdk/src/host/pico_stdlib/stdlib.c" />
+            
+            
             <file category="include"    name="pico-sdk/src/rp2040/hardware_structs/include/" />
             <file category="include"    name="pico-sdk/src/rp2040/hardware_regs/include/" />
             
             <file category="include"    name="pico-sdk/src/common/pico_base/include/" />
+            
             <file category="include"    name="pico-sdk/src/common/pico_sync/include/" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_sync/critical_section.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_sync/lock_core.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_sync/mutex.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_sync/sem.c" />
+            
             <file category="include"    name="pico-sdk/src/common/pico_time/include/" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_time/time.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_time/timeout_helper.c" />
+            
             <file category="include"    name="pico-sdk/src/common/pico_util/include/" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_util/queue.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_util/pheap.c" />
+            <file category="sourceC"    name="pico-sdk/src/common/pico_util/datetime.c" />
+            
+            
             <file category="include"    name="pico-sdk/src/common/pico_stdlib/include/" />
             <file category="include"    name="pico-sdk/src/common/pico_binary_info/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_base/include/" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_watchdog/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_pll/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_pll/pll.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_xosc/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_xosc/xosc.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_flash/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_flash/flash.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_dma/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_dma/dma.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_irq/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_irq/irq.c" />
+            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_gpio/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_gpio/gpio.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_resets/include/" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_clocks/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_clocks/clocks.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_timer/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_timer/timer.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_sync/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_sync/sync.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_claim/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_claim/claim.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_spi/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_spi/spi.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_pwm/include/" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_i2c/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_i2c/i2c.c" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_i2c_slave/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_i2c_slave/i2c_slave.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_uart/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_uart/uart.c" />
+            
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_adc/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_adc/adc.c" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/hardware_interp/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_interp/interp.c" />
             
             <file category="include"    name="pico-sdk/src/rp2_common/pico_multicore/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_multicore/multicore.c" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/hardware_divider/include/" />
+            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_divider/divider.S" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_bootrom/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_bootrom/bootrom.c" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_rand/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_rand/rand.c" />
+            
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_unique_id/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_unique_id/unique_id.c" />
+            
+            
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_runtime/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_printf/include/" />
-            <file category="include"    name="pico-sdk/src/rp2_common/pico_bootrom/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_uart/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_usb/include/" />
-          
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_semihosting/include/" />
-            <file category="include"    name="pico-sdk/src/rp2_common/pico_bootrom/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_double/include/" />
-            <file category="include"    name="pico-sdk/src/rp2_common/hardware_divider/include/" />
-            <file category="include"    name="pico-sdk/src/rp2_common/pico_rand/include/" />
-            <file category="include"    name="pico-sdk/src/rp2_common/pico_unique_id/include/" />
-
+            
         </files>
         <Pre_Include_Local_Component_h>
 #define LIB_CMSIS_CORE                  1
