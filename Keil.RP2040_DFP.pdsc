@@ -393,11 +393,12 @@
     <image small="Images/RPi_Pico.png" large="Images/RPi_Pico.png" public="true"/>
 
     <book category="overview"  name="https://www.raspberrypi.org/products/raspberry-pi-pico/" title="Raspberry Pi Pico"/>
-    <book category="other"     name="Documentation/Pico-R3-Fritzing.fzpz" title="Fritzing Part" public="true"/>
-    <book category="other"     name="Documentation/Pico-R3-step.zip" title="STEP File" public="true"/>
-    <book category="setup"     name="Documentation/getting-started-with-pico.pdf" title="Getting Started Guide" public="true"/>
-    <book category="manual"    name="Documentation/pico-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
-    <book category="schematic" name="Documentation/RPi-Pico-R3-PUBLIC-20200119.zip" title="Schematics" public="true"/>
+    <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-Fritzing.fzpz" title="Fritzing Part" public="true"/>
+    <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-step.zip" title="STEP File" public="true"/>
+    <book category="setup"     name="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf" title="Getting Started Guide" public="true"/>
+    <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
+    <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/hardware-design-with-rp2040.pdf" title="Hardware design with RP2040" public="true"/>
+    <book category="schematic" name="https://datasheets.raspberrypi.com/pico/RPi-Pico-R3-PUBLIC-20200119.zip" title="Schematics" public="true"/>
     <book category="other"     name="Documentation/README.md" title="Guide"/>
 
     <mountedDevice Dname="RP2040" Dvendor="RPi:170"/>

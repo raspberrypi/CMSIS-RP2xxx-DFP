@@ -43,15 +43,14 @@ DEFAULT_ARGS=(-c "v")
 # Specify file names to be deleted from pack build directory
 # Default: empty
 #
-#PACK_DELETE_FILES="
-#  Documentation/Pico-R3-Fritzing.fzpz
-#  Documentation/hardware-design-with-rp2040.pdf
-#  Documentation/Pico-R3-step.zip
-#  Documentation/getting-started-with-pico.pdf
-#  Documentation/pico-datasheet.pdf
-#  Documentation/RPi-Pico-R3-PUBLIC-20200119.zip
-#  Documentation/README.md
-#"
+PACK_DELETE_FILES="
+  Documentation/Pico-R3-Fritzing.fzpz
+  Documentation/hardware-design-with-rp2040.pdf
+  Documentation/Pico-R3-step.zip
+  Documentation/getting-started-with-pico.pdf
+  Documentation/pico-datasheet.pdf
+  Documentation/RPi-Pico-R3-PUBLIC-20200119.zip
+"
 
 # Specify patches to be applied
 # Default: empty
