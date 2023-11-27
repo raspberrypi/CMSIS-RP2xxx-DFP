@@ -179,24 +179,3 @@ void _sys_exit(int ret)
 }
 
 #endif
-
-
-#if defined(RTE_Compiler_EventRecorder) && !defined(__PERF_COUNTER__)
-
-uint32_t EventRecorderTimerSetup(void)
-{
-    return 1;
-}
-
-uint32_t EventRecorderTimerGetCount(void)
-{
-    return get_system_ticks();
-}
-
-uint32_t EventRecorderTimerGetFreq (void)
-{
-    extern uint32_t SystemCoreClock;
-    return SystemCoreClock;
-}
-
-#endif

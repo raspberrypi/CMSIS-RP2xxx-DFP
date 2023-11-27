@@ -36,6 +36,7 @@
         <environment name="uv">
           <CMisc>-std=gnu11</CMisc>
           <LMisc>--diag_suppress=L6314,L6170</LMisc>
+          <postBuild2>$Stools\elf2uf2.exe "#L" ".\@L.uf2"</postBuild2>
         </environment>
         <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
           // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
@@ -256,7 +257,7 @@
       </files>
     </component>
     -->
-    
+
     <component Cclass="Device" Cgroup="Pico SDK" Cversion="1.5.1" condition="RP2040 CMSIS STARTUP" >
         <description>The Raspberry Pi Pico SDK.</description>
         
