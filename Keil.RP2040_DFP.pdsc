@@ -8,7 +8,8 @@
   <url>https://www.keil.com/pack/</url>
 
   <releases>
-    <release version="0.9.1-dev6" tag="0.9.1-dev6">
+    <!--automatically generated content, please do not modify -->
+    <release version="9.9.9" tag="9.9.9">
       Active development ...
     </release>
   </releases>
@@ -34,7 +35,7 @@
         <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
         <environment name="uv">
           <CMisc>-std=gnu11</CMisc>
-          <LMisc>--diag_suppress=L6314</LMisc>
+          <LMisc>--diag_suppress=L6314,L6170</LMisc>
         </environment>
         <debugvars configfile="CMSIS/Debug/rp2040.dbgconf" version="1.0.0">
           // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
@@ -171,6 +172,13 @@
       <require Tcompiler="GCC"/>
     </condition>
 
+    <condition id="GNU Assembler">
+        <accept Tcompiler="ARMCC" Toptions="AC6"/>
+        <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+        <accept Tcompiler="GCC"/>
+        <accept Tcompiler="CLANG"/>
+    </condition>
+
     <!-- Device Conditions -->
     <condition id="RP2040">
       <description>Raspberry PI RP2040 device</description>
@@ -216,7 +224,7 @@
         <file category="sourceC"                        name="CMSIS/Device/RP2040/Source/system_rp2040.c"      version="1.1.0" attr="config"/>
         
         <!-- Stage 2 Boot -->
-        <file category="sourceAsm"                      name="pico-sdk/src/rp2_common/boot_stage2/compile_time_choice.S" condition="ARMCC"/>
+        <file category="sourceAsm"                      name="pico-sdk/src/rp2_common/boot_stage2/compile_time_choice.S" condition="GNU Assembler"/>
         
         <file category="include"                        name="pico-sdk/src/boards/include/" />
         <file category="include"                        name="pico-sdk/src/rp2_common/cmsis/include/" />
@@ -310,7 +318,7 @@
             
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_irq/include/" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_irq/irq.c" />
-            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S"  condition="ARMCC"/>
+            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S"  condition="GNU Assembler"/>
             
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_gpio/include/" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_gpio/gpio.c" />
@@ -353,7 +361,7 @@
             <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_multicore/multicore.c" />
             
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_divider/include/" />
-            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_divider/divider.S"  condition="ARMCC"/>
+            <file category="sourceAsm"  name="pico-sdk/src/rp2_common/hardware_divider/divider.S"  condition="GNU Assembler"/>
             
             <file category="include"    name="pico-sdk/src/rp2_common/pico_bootrom/include/" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_bootrom/bootrom.c" />
