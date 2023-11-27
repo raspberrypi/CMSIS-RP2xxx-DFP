@@ -427,7 +427,7 @@
     </boards>
 
     <examples>
-      <example name="Breath_LED" folder="example/mdk" version="1.0">
+      <example name="Breath_LED" folder="example/mdk" doc="README.md" version="1.0">
         <description>This is a basic example demonstrating the development using RP2040_DFP.</description>
         <board name="Raspberry Pi Pico" vendor="Raspberry Pi"/>
         <project>
