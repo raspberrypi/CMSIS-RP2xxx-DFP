@@ -270,18 +270,18 @@
             <file category="sourceC"                name="__wrapper/stdio.c" />
             <file category="sourceC"                name="__wrapper/runtime.c" />
             
-            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_platform/platform.c" />
+            
             
             
             <file category="include"    name="pico-sdk/src/" />
-            
+            <file category="include"    name="pico-sdk/src/boards/include/" />
             <file category="sourceC"    name="pico-sdk/src/host/pico_stdlib/stdlib.c" />
-            
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_platform/platform.c" />
             
             <file category="include"    name="pico-sdk/src/rp2040/hardware_structs/include/" />
             <file category="include"    name="pico-sdk/src/rp2040/hardware_regs/include/" />
-            
             <file category="include"    name="pico-sdk/src/common/pico_base/include/" />
+            
             
             <file category="include"    name="pico-sdk/src/common/pico_sync/include/" />
             <file category="sourceC"    name="pico-sdk/src/common/pico_sync/critical_section.c" />
@@ -302,6 +302,8 @@
             <file category="include"    name="pico-sdk/src/common/pico_stdlib/include/" />
             <file category="include"    name="pico-sdk/src/common/pico_binary_info/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_base/include/" />
+            
+            
             
             <file category="include"    name="pico-sdk/src/rp2_common/hardware_watchdog/include/" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c" />
