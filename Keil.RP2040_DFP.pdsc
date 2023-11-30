@@ -265,7 +265,7 @@
             
             <file category="include"                name="__wrapper/" />
             <file category="include"                name="__wrapper/pico_base/" />
-            <file category="preIncludeGlobal"       name="__wrapper/env_wrapper.h" version="1.0.0" attr="config" />
+            <file category="preIncludeGlobal"       name="__wrapper/env_wrapper.h" version="1.1.0" attr="config" />
             <file category="sourceC"                name="__wrapper/env_wrapper.c" />
             <file category="sourceC"                name="__wrapper/stdio.c" />
             <file category="sourceC"                name="__wrapper/runtime.c" />
