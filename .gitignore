@@ -55,3 +55,5 @@ output
 RTE_Components.h
 *@*
 *.0???
+*.uf2
+Pre_Include_*
