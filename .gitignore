@@ -57,3 +57,8 @@ RTE_Components.h
 *.0???
 *.uf2
 Pre_Include_*
+Objects
+example/mdk/EventRecorderStub.scvd
+example/mdk/DebugConfig/Pico_RP2040_Core0_1.0.0.dbgconf
+Device
+*.uvguix.*
