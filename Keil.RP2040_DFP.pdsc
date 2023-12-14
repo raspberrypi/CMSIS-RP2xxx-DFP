@@ -230,6 +230,7 @@
         <file category="include"                        name="pico-sdk/src/boards/include/" />
         <file category="include"                        name="pico-sdk/src/rp2_common/cmsis/include/" />
         
+        <!-- the language="asm" has been well supported yet */
         <file category="include" language="asm"         name="pico-sdk/src/rp2040/hardware_regs/include/"/>
         <file category="include" language="asm"         name="pico-sdk/src/rp2_common/hardware_irq/include/"/>
         <file category="include" language="asm"         name="pico-sdk/src/rp2_common/pico_platform/include/"/>
@@ -238,6 +239,15 @@
         <file category="include" language="asm"         name="__wrapper/pico_base/"/>
         <file category="include" language="asm"         name="pico-sdk/src/rp2_common/boot_stage2/include/"/>
         <file category="include" language="asm"         name="pico-sdk/src/rp2_common/boot_stage2/asminclude/"/>
+        -->
+        <file category="include"                        name="pico-sdk/src/rp2040/hardware_regs/include/"/>
+        <file category="include"                        name="pico-sdk/src/rp2_common/hardware_irq/include/"/>
+        <file category="include"                        name="pico-sdk/src/rp2_common/pico_platform/include/"/>
+        <file category="include"                        name="pico-sdk/src/common/pico_base/include/"/>
+        
+        <file category="include"                        name="__wrapper/pico_base/"/>
+        <file category="include"                        name="pico-sdk/src/rp2_common/boot_stage2/include/"/>
+        <file category="include"                        name="pico-sdk/src/rp2_common/boot_stage2/asminclude/"/>
         
       </files>
     </component>
