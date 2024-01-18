@@ -73,7 +73,7 @@
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg2Name>$Stools\pio_all.bat</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -423,6 +423,12 @@
         <package name="ARM_Compiler" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.7.2"/>
         <targetInfos>
           <targetInfo name="Pico" versionMatchMode="fixed"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Pico Board" Cvariant="Pico" Cvendor="Keil" Cversion="1.5.1" condition="RP2040">
+        <package name="RP2040_DFP" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="Keil" version="0.9.2"/>
+        <targetInfos>
+          <targetInfo name="Pico"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Pico SDK" Cvendor="Keil" Cversion="1.5.1" condition="RP2040 CMSIS STARTUP">
