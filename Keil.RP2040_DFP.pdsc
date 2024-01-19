@@ -578,8 +578,8 @@
     </boards>
 
     <examples>
-      <example name="Breath_LED" folder="example/mdk" doc="README.md" version="1.0">
-        <description>This is a basic example demonstrating the development using RP2040_DFP.</description>
+      <example name="Breath_LED" folder="example/mdk/pico" doc="README.md" version="1.0">
+        <description>This is a basic example demonstrating the development using RP2040_DFP on Pico.</description>
         <board name="Raspberry Pi Pico" vendor="Raspberry Pi"/>
         <project>
           <environment name="uv"  load="rp2040_example.uvprojx"/>
@@ -590,6 +590,22 @@
           <component Cclass="Device" Cgroup="Pico Board" Cvariant="Pico"/>
           <component Cclass="Device" Cgroup="Pico SDK"/>
           <keyword>Pico</keyword>
+          <keyword>Getting Started</keyword>
+        </attributes>
+      </example>
+      <example name="Breath_LED" folder="example/mdk/pico_w" doc="README.md" version="1.0">
+        <description>This is a basic example demonstrating the development using RP2040_DFP on Pico W.</description>
+        <board name="Raspberry Pi Pico W" vendor="Raspberry Pi"/>
+        <project>
+          <environment name="uv"  load="rp2040_example.uvprojx"/>
+        </project>
+        <attributes>
+          <component Cclass="CMSIS" Cgroup="Core"/>
+          <component Cclass="Device" Cgroup="Startup"/>
+          <component Cclass="Device" Cgroup="Pico Board" Cvariant="Pico W"/>
+          <component Cclass="Device" Cgroup="Pico SDK"/>
+          <component Cclass="Device" Cgroup="Pico W SDK"/>
+          <keyword>Pico W</keyword>
           <keyword>Getting Started</keyword>
         </attributes>
       </example>

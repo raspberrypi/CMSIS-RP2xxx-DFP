@@ -431,7 +431,7 @@
           <targetInfo name="Pico"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Pico SDK" Cvendor="Keil" Cversion="1.5.1" condition="RP2040 CMSIS STARTUP">
+      <component Cclass="Device" Cgroup="Pico SDK" Cvendor="Keil" Cversion="1.5.1" condition="RP2040 BOARD">
         <package name="RP2040_DFP" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="Keil" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Pico" versionMatchMode="fixed"/>
@@ -473,7 +473,7 @@
       </file>
       <file attr="config" category="preIncludeGlobal" name="__wrapper\env_wrapper.h" version="1.1.0">
         <instance index="0">RTE\Device\RP2040_Core0\env_wrapper.h</instance>
-        <component Cclass="Device" Cgroup="Pico SDK" Cvendor="Keil" Cversion="1.5.1" condition="RP2040 CMSIS STARTUP"/>
+        <component Cclass="Device" Cgroup="Pico SDK" Cvendor="Keil" Cversion="1.5.1" condition="RP2040 BOARD"/>
         <package name="RP2040_DFP" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="Keil" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Pico"/>
