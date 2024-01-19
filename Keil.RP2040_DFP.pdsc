@@ -206,26 +206,33 @@
       <require Cclass="Device" Cgroup="Pico Board"/>
     </condition>
 
+    <condition id="Pico W SDK">
+      <description>Raspberry Pi RP2040 SDK</description>
+      <require condition="RP2040"/>
+      <require Cclass="Device" Cgroup="Pico Board" Cvariant="Pico W"/>
+      <require Cclass="Device" Cgroup="Pico SDK"/>
+    </condition>
+
   </conditions>
 
   <components>
 
     <component Cclass="Device" Cgroup="Pico Board" Cversion="1.5.1" Cvariant="None" condition="RP2040" >
-        <description>Pico</description>
+        <description>No Board</description>
         <files>
             <file category="include"                name="__boards_wrapper/none/" />
         </files>
     </component>
 
     <component Cclass="Device" Cgroup="Pico Board" Cversion="1.5.1" Cvariant="Pico" condition="RP2040" >
-        <description>Pico</description>
+        <description>Pico Board</description>
         <files>
             <file category="include"                name="__boards_wrapper/pico_base/" />
         </files>
     </component>
 
     <component Cclass="Device" Cgroup="Pico Board" Cversion="1.5.1" Cvariant="Pico W" condition="RP2040" >
-        <description>Pico W</description>
+        <description>Pico W Board</description>
         <files>
             <file category="include"                name="__boards_wrapper/pico_w_base/" />
         </files>
@@ -433,6 +440,80 @@
         <RTE_Components_h>
             #define RTE_Device_Pico_SDK     /* Device Pico-SDK */
         </RTE_Components_h>
+    </component>
+
+    <component Cclass="Device" Cgroup="Pico W SDK" Cversion="1.5.1" condition="Pico W SDK" >
+        <description>Pico W SDK Extras.</description>
+        
+        <files>
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_async_context/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_async_context/async_context_base.c" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_async_context/async_context_poll.c" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_async_context/async_context_threadsafe_background.c" />
+
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_cyw43_arch/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_cyw43_arch/cyw43_arch.c" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_cyw43_arch/cyw43_arch_poll.c" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_cyw43_arch/cyw43_arch_threadsafe_background.c" />
+
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_cyw43_driver/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_cyw43_driver/cyw43_bus_pio_spi.c" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_cyw43_driver/cyw43_driver.c" />
+
+            <file category="include"    name="pico-sdk/src/rp2_common/pico_lwip/include/" />
+            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_lwip/lwip_nosys.c" />
+
+            <file category="include"    name="pico-sdk/lib/cyw43-driver/firmware/" />
+            <file category="include"    name="pico-sdk/lib/cyw43-driver/src/" />
+            <file category="sourceC"    name="pico-sdk/lib/cyw43-driver/src/cyw43_ctrl.c" />
+            <file category="sourceC"    name="pico-sdk/lib/cyw43-driver/src/cyw43_ll.c" />
+            <file category="sourceC"    name="pico-sdk/lib/cyw43-driver/src/cyw43_lwip.c" />
+            <file category="sourceC"    name="pico-sdk/lib/cyw43-driver/src/cyw43_stats.c" />
+
+
+            <file category="include"    name="pico-sdk/lib/lwip/src/include/" />
+
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/acd.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/autoip.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/dhcp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/etharp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/icmp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/igmp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/ip4.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/ip4_addr.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv4/ip4_frag.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/dhcp6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/ethip6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/icmp6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/inet6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/ip6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/ip6_addr.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/ip6_frag.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/mld6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ipv6/nd6.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/altcp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/altcp_alloc.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/altcp_tcp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/def.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/dns.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/inet_chksum.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/init.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/ip.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/mem.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/memp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/netif.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/pbuf.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/raw.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/stats.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/sys.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/tcp.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/tcp_in.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/tcp_out.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/timeouts.c" />
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/core/udp.c" />
+
+            <file category="sourceC"    name="pico-sdk/lib/lwip/src/netif/ethernet.c" />
+        </files>
     </component>
 
   </components>
