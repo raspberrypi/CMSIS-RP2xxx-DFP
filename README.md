@@ -16,7 +16,7 @@ The following scenarios have been tested so far with above workaround for the CM
 
 | Debug Unit | w/o Atomic Blocks | w/ Atomic Blocks | Notes|
 |------------|-------------------|------------------|------|
-| Picoprobe (CMSIS-DAPv2 based) | :white_check_mark: | :x: | Known issues with FW for back-to-back command buffers|
+| Picoprobe (CMSIS-DAPv2 based) | :white_check_mark: | :white_check_mark: | Should be fixed as of v1.1|
 | ULINKplus (CMSIS-DAPv2 based) | :white_check_mark: | :white_check_mark: | |
 | ULINKpro | :x: | :white_check_mark: | ULINKpro requires atomic blocks due to continuous SWCLK clocking between SWJ_Sequence calls. This breaks the expected SWDIO bit stream. |
 

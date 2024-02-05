@@ -46,7 +46,7 @@
         <sequences>
           <!-- Helper sequences -->
           <sequence name="Dormant2SWD" info="Switch from dormant mode to SWD mode">
-            <block atomic="false">
+            <block atomic="true">
               // Ensure current debug interface is in reset state
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
@@ -66,7 +66,7 @@
           </sequence>
 
           <sequence name="CheckForPicoDAP" info="Ensure TARGETSEL sequence not applied to DAP w/o multi-drop">
-            <block atomic="false">
+            <block atomic="true">
               __var swDP      = 0x0BC12477;  // Cortex-M0+ SW-DP with multi-drop (Core0 and Core1 sub-systems)
               __var rescueDP  = 0x10212927;  // Raspberry Pi Pico Rescue DP
               __var dpIdrAddr = 0x0;
@@ -88,7 +88,7 @@
           </sequence>
 
           <sequence name="SelectCore" Pname="Core0" info="TARGETSEL sequence for Core 0">
-            <block atomic="false">
+            <block atomic="true">
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
@@ -116,7 +116,7 @@
           </sequence>
 
           <sequence name="SelectCore" Pname="Core1" info="TARGETSEL sequence for Core 1">
-            <block atomic="false">
+            <block atomic="true">
               // Enter SWD Line Reset State
               DAP_SWJ_Sequence(51, 0x0007FFFFFFFFFFFF);  // &gt; 50 cycles SWDIO/TMS High
               DAP_SWJ_Sequence(3,  0x00);                // At least 2 idle cycles (SWDIO/TMS Low)
