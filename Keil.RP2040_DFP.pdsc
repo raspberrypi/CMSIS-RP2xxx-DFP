@@ -309,7 +309,7 @@
         <files>
             
             <file category="include"                name="__wrapper/" />
-            <file category="preIncludeGlobal"       name="__wrapper/env_wrapper.h" version="1.1.0" attr="config" />
+            <file category="preIncludeGlobal"       name="__wrapper/env_wrapper.h" version="1.5.1" attr="config" />
             <file category="sourceC"                name="__wrapper/env_wrapper.c" />
             
             
@@ -426,7 +426,7 @@
             <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_runtime/runtime.c" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_printf/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio/include/" />
-            <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_stdio/stdio.c" />
+            <file category="sourceC"    name="__wrapper/stdio.c" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_uart/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_usb/include/" />
             <file category="include"    name="pico-sdk/src/rp2_common/pico_stdio_semihosting/include/" />
@@ -446,6 +446,8 @@
         <description>Pico W SDK Extras.</description>
         
         <files>
+            <file category="preIncludeLocal"       name="__wrapper/lwipopts.h" version="1.5.1" attr="config" />
+
             <file category="include"    name="pico-sdk/src/rp2_common/pico_async_context/include/" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_async_context/async_context_base.c" />
             <file category="sourceC"    name="pico-sdk/src/rp2_common/pico_async_context/async_context_poll.c" />

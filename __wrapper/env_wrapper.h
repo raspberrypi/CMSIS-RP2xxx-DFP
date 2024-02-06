@@ -163,26 +163,27 @@ typedef unsigned int        uint;
 #define __mutex_array_start     Image$$ER_MUTEX_ARRAY$$ZI$$Base
 #define __mutex_array_end       Image$$ER_MUTEX_ARRAY$$ZI$$Limit
 
-#define __preinit_array_start   Image$$ER_PREINIT_ARRAY$$ZI$$Base
-#define __preinit_array_end     Image$$ER_PREINIT_ARRAY$$ZI$$Limit
-
 #define PROGRAM_STATUS_REG
 #define PICO_ON_DEVICE                  1
 
 
-#undef __sev  
-#undef __wfe       
-#undef __dmb       
-#undef __dsb       
-#undef __isb       
+#undef __sev
+#undef __wfi
+#undef __wfe
+#undef __dmb
+#undef __dsb
+#undef __isb
 
-#define __sev()     __builtin_arm_sev()
-#define __wfe()     __builtin_arm_wfe()
+#define __sev       __builtin_arm_sev
+#define __wfi       __builtin_arm_wfi
+#define __wfe       __builtin_arm_wfe
 
-#define __dmb(...)  __builtin_arm_dmb(0xF)
+#define __dmb       __DMB
 
 #define __dsb       __DSB
 #define __isb       __ISB
+
+typedef __uint16_t uint16_t
 
 #include "pico/platform.h"
 
