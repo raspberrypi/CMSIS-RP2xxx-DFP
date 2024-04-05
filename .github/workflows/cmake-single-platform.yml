@@ -24,6 +24,9 @@ jobs:
       - name: get pico-sdk
         run: |
           git submodule update --init
+          pushd pico-sdk
+          git submodule update --init
+          popd
 
       - uses: Open-CMSIS-Pack/gen-pack-action@main
         with:
