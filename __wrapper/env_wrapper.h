@@ -183,7 +183,7 @@ typedef unsigned int        uint;
 #define __dsb       __DSB
 #define __isb       __ISB
 
-typedef __uint16_t uint16_t
+typedef uint16_t __uint16_t;
 
 #include "pico/platform.h"
 
