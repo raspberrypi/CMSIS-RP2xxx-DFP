@@ -50,6 +50,7 @@ dkms.conf
 
 **.DS_STORE
 
+build
 output
 
 RTE_Components.h
