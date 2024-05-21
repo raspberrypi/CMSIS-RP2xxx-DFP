@@ -35,6 +35,13 @@ jobs:
           gen-pack-script: ./gen_pack.sh
           gen-pack-output: ./output
 
+      - name: Upload named artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RP2xxx_DFP
+          path: ./output/*.pack
+          if-no-files-found: error
+
       - name: Attach pdsc to release assets
         if: ${{ github.event_name == 'release' }}
         uses: svenstaro/upload-release-action@v2
