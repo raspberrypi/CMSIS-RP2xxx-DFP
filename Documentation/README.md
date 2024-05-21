@@ -53,10 +53,8 @@ Raspberry Pi Pico has been designed to be a low cost yet flexible development pl
 
 ## Schematics
 
-- [Pico schematic](./RPi-Pico-R3-PUBLIC-20200119.zip)
+- [Pico schematic](https://datasheets.raspberrypi.com/pico/RPi-Pico-R3-PUBLIC-20200119.zip)
 
-## Firmware
+## Debugprobe Firmware
 
-tbd - explain how to use a second Pico as a debug adapter with the following FW:
-
-- [Pico probe firmware](./picoprobe.uf2)
+See [this GitHub repository](https://github.com/raspberrypi/debugprobe) for details of how to use a second Pico as a debug adapter, with the debugprobe firmware

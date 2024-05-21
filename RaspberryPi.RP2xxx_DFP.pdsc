@@ -24,7 +24,7 @@
     <family Dfamily="RP2040 Series" Dvendor="RPi:170">
         <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core0"/>
         <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dclock="133000000" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Pname="Core1"/>
-        <book name="Documentation/rp2040-datasheet.pdf" title="RP2040 Data Sheet"/>
+        <book name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="RP2040 Datasheet" public="true"/>
 
         <description>
           Designed by Raspberry Pi, RP2040 features a dual-core Arm Cortex-M0+ processor with 264KB internal RAM and support for up to 16MB of off-chip Flash.
@@ -531,7 +531,8 @@
         <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-Fritzing.fzpz" title="Fritzing Part" public="true"/>
         <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-step.zip" title="STEP File" public="true"/>
         <book category="setup"     name="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf" title="Getting Started Guide" public="true"/>
-        <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
+        <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="RP2040 Datasheet" public="true"/>
+        <book category="manual"    name="https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
         <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/hardware-design-with-rp2040.pdf" title="Hardware design with RP2040" public="true"/>
         <book category="schematic" name="https://datasheets.raspberrypi.com/pico/RPi-Pico-R3-PUBLIC-20200119.zip" title="Schematics" public="true"/>
         <book category="other"     name="Documentation/README.md" title="Guide"/>
@@ -556,12 +557,13 @@
         <image small="Images/RPi_Pico.png" large="Images/RPi_Pico.png" public="true"/>
 
         <book category="overview"  name="https://www.raspberrypi.org/products/raspberry-pi-pico/" title="Raspberry Pi Pico"/>
-        <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-Fritzing.fzpz" title="Fritzing Part" public="true"/>
-        <book category="other"     name="https://datasheets.raspberrypi.com/pico/Pico-R3-step.zip" title="STEP File" public="true"/>
+        <book category="other"     name="https://datasheets.raspberrypi.com/picow/PicoW-Fritzing.fzpz" title="Fritzing Part" public="true"/>
+        <book category="other"     name="https://datasheets.raspberrypi.com/picow/PicoW-step.zip" title="STEP File" public="true"/>
         <book category="setup"     name="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf" title="Getting Started Guide" public="true"/>
-        <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="Raspberry Pi Pico Datasheet" public="true"/>
+        <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" title="RP2040 Datasheet" public="true"/>
+        <book category="manual"    name="https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf" title="Raspberry Pi Pico W Datasheet" public="true"/>
         <book category="manual"    name="https://datasheets.raspberrypi.com/rp2040/hardware-design-with-rp2040.pdf" title="Hardware design with RP2040" public="true"/>
-        <book category="schematic" name="https://datasheets.raspberrypi.com/pico/RPi-Pico-R3-PUBLIC-20200119.zip" title="Schematics" public="true"/>
+        <book category="schematic" name="https://datasheets.raspberrypi.com/picow/RPi-PicoW-PUBLIC-20220607.zip" title="Schematics" public="true"/>
         <book category="other"     name="Documentation/README.md" title="Guide"/>
 
         <mountedDevice Dname="RP2040" Dvendor="RPi:170"/>
