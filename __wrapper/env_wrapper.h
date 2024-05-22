@@ -178,7 +178,21 @@ typedef unsigned int        uint;
 #define __wfi       __builtin_arm_wfi
 #define __wfe       __builtin_arm_wfe
 
-#define __dmb       __DMB
+#ifndef __PLOOC_VA_NUM_ARGS_IMPL
+#   define __PLOOC_VA_NUM_ARGS_IMPL( _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,     \
+                                    _12,_13,_14,_15,_16,__N,...)      __N
+#endif
+
+#ifndef __PLOOC_VA_NUM_ARGS
+#define __PLOOC_VA_NUM_ARGS(...)                                                \
+            __PLOOC_VA_NUM_ARGS_IMPL( 0,##__VA_ARGS__,16,15,14,13,12,11,10,9,   \
+                                      8,7,6,5,4,3,2,1,0)
+#endif
+
+#define __dmb0()    __builtin_arm_dmb(0xF)
+#define __dmb1(__N) __builtin_arm_dmb(__N)
+
+#define __dmb(...)  __CONCAT(__dmb, __PLOOC_VA_NUM_ARGS(__VA_ARGS__))(__VA_ARGS__)
 
 #define __dsb       __DSB
 #define __isb       __ISB
