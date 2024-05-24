@@ -6,7 +6,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
 <url>https://raw.githubusercontent.com/raspberrypi/cmsis-rp2xxx-dfp/main/</url>
 <timestamp>2024-04-24 10:08:36</timestamp>
 <pindex>
-<pdsc url="https://github.com/raspberrypi/cmsis-rp2xxx-dfp/releases/download/v0.9.4/"
-vendor="RaspberryPi" name="RP2xxx_DFP" version="0.9.4"/>
+<pdsc url="https://github.com/raspberrypi/cmsis-rp2xxx-dfp/releases/download/v0.9.5/"
+vendor="RaspberryPi" name="RP2xxx_DFP" version="0.9.5"/>
 </pindex>
 </index>

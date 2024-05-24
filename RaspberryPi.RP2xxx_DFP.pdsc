@@ -5,7 +5,7 @@
   <description>Raspberry Pi RP2xxx Device Family Pack</description>
   <vendor>RaspberryPi</vendor>
   <!-- <license>license.txt</license> -->
-  <url>https://github.com/raspberrypi/cmsis-rp2xxx-dfp/releases/download/v0.9.4/</url>
+  <url>https://github.com/raspberrypi/cmsis-rp2xxx-dfp/releases/download/v0.9.5/</url>
   <repository type="git">https://github.com/raspberrypi/cmsis-rp2xxx-dfp.git</repository>
 
   <releases>
