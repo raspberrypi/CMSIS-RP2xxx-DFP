@@ -36,7 +36,7 @@
         <compile header="CMSIS/Device/RP2040/Include/rp2040.h" define="RP2040"/>
         <environment name="uv">
           <CMisc>-std=gnu11</CMisc>
-          <LMisc>--diag_suppress=L6314,L6170</LMisc>
+          <LMisc>--diag_suppress=L6314,L6170 --entry=Reset_Handler</LMisc>
           <preBuild2>$Stools\pio_all.bat</preBuild2>
           <postBuild2>$Stools\elf2uf2.exe "#L" ".\@L.uf2"</postBuild2>
         </environment>
