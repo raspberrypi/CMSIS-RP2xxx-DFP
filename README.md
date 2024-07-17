@@ -1,4 +1,4 @@
-# RP2040 Device Family Pack (v0.9.0)
+# RP2040 Device Family Pack (v0.9.5)
 
 This is an exemplary CMSIS-Pack with device support for the Raspberry Pi RP2040. [Pico-SDK(v1.5.1)](https://github.com/raspberrypi/pico-sdk/releases/tag/1.5.1) has been integrated using submodule.
 
