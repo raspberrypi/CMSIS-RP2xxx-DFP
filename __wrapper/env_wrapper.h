@@ -171,8 +171,8 @@ typedef unsigned int        uint;
 #undef __wfi
 #undef __wfe
 #undef __dmb
-#undef __dsb
-#undef __isb
+//#undef __dsb
+//#undef __isb
 
 #define __sev       __builtin_arm_sev
 #define __wfi       __builtin_arm_wfi
@@ -194,8 +194,8 @@ typedef unsigned int        uint;
 
 #define __dmb(...)  __CONCAT(__dmb, __PLOOC_VA_NUM_ARGS(__VA_ARGS__))(__VA_ARGS__)
 
-#define __dsb       __DSB
-#define __isb       __ISB
+//#define __dsb       __DSB
+//#define __isb       __ISB
 
 typedef uint16_t __uint16_t;
 
